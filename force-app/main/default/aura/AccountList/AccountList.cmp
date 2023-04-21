@@ -1,0 +1,10 @@
+<aura:component controller="AccountListController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:handler name="init" value="{!this}" action="{!c.init}"/> 
+    <aura:attribute name="accountlist" type="List"/>
+    
+    <lightning:card>       
+            <aura:iteration items="{!v.accountlist}" var="account">
+                 <li  class="slds-m-left--small"><span>{!account.Name}</span></li> 
+    		</aura:iteration>               
+    </lightning:card>    
+</aura:component>
