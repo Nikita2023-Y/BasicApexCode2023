@@ -19,13 +19,12 @@ trigger ContactModify on Contact (after insert,after delete,after update) {
         }
 
         //Get the all the collected accounts details and related contacts
-        List<Account> accountList =[SELECT Id,Name,Total_Contacts__c,(Select Id from Contacts) from Account where Id IN: accIds];
+        List<Account> accountList =[SELECT Id,Name,Number_of_Contacts__c,(Select Id from Contacts) from Account where Id IN: accIds];
         List <Account> accountsToUpdate = new List <Account>();
         for(Account a: accountList){
             Account aObj = new Account();
             aObj.Id = a.Id;
-            aObj.Total_Contacts__c = a.Contacts.size();
-            System.debug('aObj.Name>>'+a.Contacts.size());
+            aObj.Number_of_Contacts__c = a.Contacts.size();
             accountsToUpdate.add(aObj);
         }
 
